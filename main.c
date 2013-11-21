@@ -17,8 +17,9 @@ void GPIO_Configuration(void);
 int main(void)
 {
 	__IO unsigned long n=0xE00000;
-	char code dispaly[]="0123456789";
-	char *str=display;	
+	char display[]="0123456789";
+	char *str;
+	*str=display;	
 
 	RCC_Configuration();
 	GPIO_Configuration();

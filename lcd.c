@@ -4,29 +4,31 @@
 #include "task.h"
 #include "stm32f4xx_conf.h"
 
+
+
 void LCD_CMD(char cmd)		
 {
 	int i;	
 	LCD_DBPORT=cmd ;         
-	RS=0;RW=0;E=1;          
-	for(i=0;i<4000;i++);      
-	RS=0;RW=0;E=0;          
+	RS_0;RW_0;E_1;          
+	for(i=0;i<1000;i++);      
+	RS_0;RW_0;E_0;          
 }
 
 void LCD_DATA(char data1)	
 {
 	int i;
 	LCD_DBPORT=data1;
-	RS=1;RW=0;E=1;          
-	for(i=0;i<4000;i++) ;      
-	RS=1;RW=0;E=0;         
+	RS_1;RW_0;E_1;          
+	for(i=0;i<1000;i++) ;      
+	RS_1;RW_0;E_0;         
 }
 
 void delay10ms(int count) 
 {
    int i,j;
    for(i=0;i<count;i++)    
-	for(j=0;j<194000;j++);
+	for(j=0;j<50000;j++);
 }
 
 void Init_LCD()		       

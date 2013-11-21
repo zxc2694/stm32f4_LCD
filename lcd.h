@@ -1,11 +1,16 @@
 #ifndef __LCD_H__
 #define __LCD_H__
 
-#define LCD_DBPORT P0	
+#define LCD_DBPORT GPIOA	
 
-sbit RS=P2^7 ;		
-sbit RW=P2^6 ;		
-sbit E=P2^5 ;		
+#define RS_0  GPIO_ResetBits(GPIOC, GPIO_Pin_0);
+#define RW_0  GPIO_ResetBits(GPIOC, GPIO_Pin_1);
+#define E_0   GPIO_ResetBits(GPIOC, GPIO_Pin_2);
+
+
+#define RS_1  GPIO_SetBits(GPIOC, GPIO_Pin_0);
+#define RW_1  GPIO_SetBits(GPIOC, GPIO_Pin_1);
+#define E_1   GPIO_SetBits(GPIOC, GPIO_Pin_2);
 
 void LCD_CMD(char cmd);
 void LCD_DATA(char data1);
