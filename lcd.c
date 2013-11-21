@@ -4,12 +4,16 @@
 #include "task.h"
 #include "stm32f4xx_conf.h"
 
-
+void LCD_Write(char ch)        
+{
+    GPIO_SetBits(GPIOA, (uint16_t) ch);
+}
 
 void LCD_CMD(char cmd)		
 {
 	int i;	
-	LCD_DBPORT=cmd ;         
+//	LCD_DBPORT=cmd ;   
+	LCD_Write(cmd);      
 	RS_0;RW_0;E_1;          
 	for(i=0;i<1000;i++);      
 	RS_0;RW_0;E_0;          
@@ -18,7 +22,8 @@ void LCD_CMD(char cmd)
 void LCD_DATA(char data1)	
 {
 	int i;
-	LCD_DBPORT=data1;
+//	LCD_DBPORT=data1;
+	LCD_Write(data1); 
 	RS_1;RW_0;E_1;          
 	for(i=0;i<1000;i++) ;      
 	RS_1;RW_0;E_0;         
