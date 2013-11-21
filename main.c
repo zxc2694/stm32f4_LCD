@@ -4,6 +4,8 @@
 #include "main.h"
 #include "stm32f4xx_conf.h"
 
+
+
 void Delay(__IO unsigned long num)
 {
 	while(num--);
@@ -15,6 +17,9 @@ void GPIO_Configuration(void);
 int main(void)
 {
 	__IO unsigned long n=0xE00000;
+	char code dispaly[]="0123456789";
+	char *str=display;	
+
 	RCC_Configuration();
 	GPIO_Configuration();
 	while(1)
@@ -27,6 +32,13 @@ int main(void)
 		GPIO_ResetBits(GPIOD, GPIO_Pin_15);
 		Delay(n);
 	}
+	Init_LCD();
+	LCD_CMD(0x1) ;           		
+	delay10ms(2) ;       
+	LCD_CMD(0x80);       			
+	while(*str!=0)
+	LCD_DATA(*str++);     			
+	str=&display[0];
 }
 
 void RCC_Configuration(void)
