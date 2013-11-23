@@ -23,7 +23,8 @@ void LCD_CMD(uint16_t cmd)
 	for(i=0;i<1000;i++);      
 	RS_0;
 	RW_0;
-	E_0;          
+	E_0;
+	GPIO_ResetBits(LCD_DBPORT, cmd);          
 }
 
 void LCD_DATA(uint16_t data1)	
@@ -37,7 +38,8 @@ void LCD_DATA(uint16_t data1)
 	for(i=0;i<1000;i++) ;      
 	RS_1;
 	RW_0;
-	E_0;         
+	E_0;     
+	GPIO_ResetBits(LCD_DBPORT, data1);    
 }
 
 void Init_LCD()		       
