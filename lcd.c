@@ -4,8 +4,7 @@
 #include "task.h"
 #include "stm32f4xx_conf.h"
 
-
-static __IO unsigned long n=0xE00000;
+static int delaytime = 30000;
 
 void Delay(__IO unsigned long num)
 {
@@ -44,11 +43,11 @@ void LCD_DATA(uint16_t data1)
 
 void Init_LCD()		       
 {
-	Delay(n) ;          
+	Delay(delaytime);         
 	LCD_CMD(0x003f) ;       
-	Delay(0x10000);
+	Delay(delaytime);
 	LCD_CMD(0x000e) ; 
-	Delay(0x10000);         
+	Delay(delaytime);         
 	LCD_CMD(0x0001) ;          
-	Delay(0x50000) ;
+	Delay(delaytime) ;
 }

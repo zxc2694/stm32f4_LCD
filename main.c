@@ -4,7 +4,7 @@
 #include "main.h"
 #include "stm32f4xx_conf.h"
 
-
+static int delaytime = 30000;
 
 void RCC_Configuration(void);
 void GPIO_Configuration(void);
@@ -19,12 +19,12 @@ int main(void)
 	GPIO_Configuration();
 	
 	Init_LCD();         		
-	Delay(0x10000);
+	Delay(delaytime);
 	LCD_CMD(0x0080);			
-	Delay(0x2000);
+	Delay(delaytime);
 	while(*str!=0){
 	LCD_DATA(*str++);
-	Delay(0x10000);
+	Delay(delaytime);
 	}     			
 	str=display;
 	while(1);
