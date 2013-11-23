@@ -17,9 +17,13 @@ void LCD_CMD(uint16_t cmd)
 	int i;
 	GPIO_SetBits(LCD_DBPORT, cmd);
 //	LCD_DBPORT=cmd ;       
-	RS_0;RW_0;E_1;          
-	for(i=0;i<10000;i++);      
-	RS_0;RW_0;E_0;          
+	RS_0;
+	RW_0;
+	E_1;          
+	for(i=0;i<1000;i++);      
+	RS_0;
+	RW_0;
+	E_0;          
 }
 
 void LCD_DATA(uint16_t data1)	
@@ -27,9 +31,13 @@ void LCD_DATA(uint16_t data1)
 	int i;
 	GPIO_SetBits(LCD_DBPORT, data1);
 //	LCD_DBPORT=data1;
-	RS_1;RW_0;E_1;          
-	for(i=0;i<10000;i++) ;      
-	RS_1;RW_0;E_0;         
+	RS_1;
+	RW_0;
+	E_1;          
+	for(i=0;i<1000;i++) ;      
+	RS_1;
+	RW_0;
+	E_0;         
 }
 
 void Init_LCD()		       
@@ -42,4 +50,3 @@ void Init_LCD()
 	LCD_CMD(0x0001) ;          
 	Delay(0x50000) ;
 }
-
