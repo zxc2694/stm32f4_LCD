@@ -4,44 +4,42 @@
 #include "task.h"
 #include "stm32f4xx_conf.h"
 
-void LCD_Write(char ch)        
+
+static __IO unsigned long n=0xE00000;
+
+void Delay(__IO unsigned long num)
 {
-    GPIO_SetBits(GPIOA, (uint16_t) ch);
+	while(num--);
 }
 
-void LCD_CMD(char cmd)		
+void LCD_CMD(uint16_t cmd)		
 {
-	int i;	
-//	LCD_DBPORT=cmd ;   
-	LCD_Write(cmd);      
+	int i;
+	GPIO_SetBits(LCD_DBPORT, cmd);
+//	LCD_DBPORT=cmd ;       
 	RS_0;RW_0;E_1;          
-	for(i=0;i<1000;i++);      
+	for(i=0;i<10000;i++);      
 	RS_0;RW_0;E_0;          
 }
 
-void LCD_DATA(char data1)	
+void LCD_DATA(uint16_t data1)	
 {
 	int i;
+	GPIO_SetBits(LCD_DBPORT, data1);
 //	LCD_DBPORT=data1;
-	LCD_Write(data1); 
 	RS_1;RW_0;E_1;          
-	for(i=0;i<1000;i++) ;      
+	for(i=0;i<10000;i++) ;      
 	RS_1;RW_0;E_0;         
-}
-
-void delay10ms(int count) 
-{
-   int i,j;
-   for(i=0;i<count;i++)    
-	for(j=0;j<50000;j++);
 }
 
 void Init_LCD()		       
 {
-	delay10ms(2) ;          
-	LCD_CMD(0x3f) ;        
-	LCD_CMD(0xe) ;          
-	LCD_CMD(0x1) ;          
-	delay10ms(1) ; 
-	LCD_CMD(0x80);          
-} 
+	Delay(n) ;          
+	LCD_CMD(0x003f) ;       
+	Delay(0x10000);
+	LCD_CMD(0x000e) ; 
+	Delay(0x10000);         
+	LCD_CMD(0x0001) ;          
+	Delay(0x50000) ;
+}
+
