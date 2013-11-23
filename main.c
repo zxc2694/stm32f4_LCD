@@ -22,8 +22,10 @@ int main(void)
 	Delay(0x10000);
 	LCD_CMD(0x0080);			
 	Delay(0x2000);
-	while(*str!=0)
-	LCD_DATA(*str++);     			
+	while(*str!=0){
+	LCD_DATA(*str++);
+	Delay(0x10000);
+	}     			
 	str=display;
 	while(1);
 }
