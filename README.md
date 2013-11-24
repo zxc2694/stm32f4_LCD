@@ -4,6 +4,9 @@ stm32f4_GPIO
 LCD (Liquid Crystal Display)
 ------------------------------
 
+Specification ：http://www.sdec.com.tw/products.php?no=50
+
+
 It has **14 pin** to be used.
 
 
