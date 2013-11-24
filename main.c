@@ -42,7 +42,6 @@ static void LCD_display_task(void *pvParameters)
 
 
 
-
 void vApplicationTickHook()
 {
 }

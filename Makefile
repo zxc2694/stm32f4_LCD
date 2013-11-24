@@ -3,7 +3,7 @@ BIN_IMAGE=STM32F4-Discovery_Demo.bin
 
 CC=arm-none-eabi-gcc
 OBJCOPY=arm-none-eabi-objcopy
-ARCH=CM3
+ARCH=CM4F
 
 LIB_STM = ./libstm
 FREERTOS_SRC = $(LIB_STM)/FreeRTOS
@@ -16,6 +16,7 @@ C_LIB= $(TOOLCHAIN_PATH)/lib/thumb2
 CFLAGS=-g -O2 -mlittle-endian -mthumb
 CFLAGS+=-mcpu=cortex-m4
 CFLAGS+=-ffreestanding -nostdlib
+CFLAGS+=-mfloat-abi=softfp -mfpu=fpv4-sp-d16
 
 
 # to run from FLASH
