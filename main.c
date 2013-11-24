@@ -22,23 +22,14 @@ int main(void)
 }
 static void LCD_display_task(void *pvParameters)
 {
-	char display[]="0123456789";
-	char *str;
-	str=display;	
-
 	RCC_Configuration();
 	GPIO_Configuration();
-	
 	Init_LCD();         		
-	LCD_CMD(0x0080);			
-	vTaskDelay(10);		//delay 10ms sec
-	while(*str!=0){
-	LCD_DATA(*str++);
-	vTaskDelay(1);		//delay 1m sec  
-	}     			
-	str=display;
+
+	LCD_display(1,1,"0123456789");	//(row,column,value)--> display form (1,1) to (1,10)			
 	while(1);
 }
+
 
 
 
