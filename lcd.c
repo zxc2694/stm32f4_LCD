@@ -31,7 +31,7 @@ void LCD_DATA(uint16_t data1)
 
 void Init_LCD()		       
 {
-	vTaskDelay(10);	         
+	vTaskDelay(100);	         
 	LCD_CMD(0x003f);       
 	vTaskDelay(10);
 	LCD_CMD(0x000e); 
