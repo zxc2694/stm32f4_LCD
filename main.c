@@ -4,7 +4,6 @@
 #include "main.h"
 #include "stm32f4xx_conf.h"
 
-static int delaytime = 30000;
 
 static void LCD_display_task(void *pvParameters);
 
@@ -31,12 +30,11 @@ static void LCD_display_task(void *pvParameters)
 	GPIO_Configuration();
 	
 	Init_LCD();         		
-	Delay(delaytime);
 	LCD_CMD(0x0080);			
-	Delay(delaytime);
+	vTaskDelay(10);		//delay 10ms sec
 	while(*str!=0){
 	LCD_DATA(*str++);
-	Delay(delaytime);
+	vTaskDelay(1);		//delay 1m sec  
 	}     			
 	str=display;
 	while(1);
