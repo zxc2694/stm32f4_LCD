@@ -4,7 +4,11 @@
 #include "task.h"
 #include "stm32f4xx_conf.h"
 
-unsigned char table[10] = "0123456789"; 	
+unsigned char table[10] = "0123456789";
+
+unsigned char wrdyear[]={0x04,0x0F,0x12,0x0F,0x0A,0x1F,0x02,0x02};	//display 'year' chinese word	
+unsigned char wrdmonth[]={0x1F,0x11,0x1F,0x11,0x1F,0x11,0x11,0x13};	//display 'month'chinese word
+unsigned char wrddata[]={0x1F,0x11,0x11,0x1F,0x11,0x11,0x11,0x1F};	//display 'day'  chinese word		
 
 void LCD_CMD(uint16_t cmd)		
 {
@@ -82,13 +86,13 @@ void showCalendar_time(int hour, int min, int sec)
 	vTaskDelay(5);
 
 	LCD_CMD(0xC4);			//(row,column)=(2,5)
-	vTaskDelay(1);
+	vTaskDelay(5);
 	LCD_DATA(0x3A); 		//':'	
-	vTaskDelay(1);
+	vTaskDelay(5);
 	LCD_CMD(0xC9);			//(row,column)=(2,8)	
-	vTaskDelay(1);	
+	vTaskDelay(5);	
 	LCD_DATA(0x3A);			//':'
-	vTaskDelay(1);
+	vTaskDelay(5);
 
 }
 void showCalendar_day(int year, int month, int data)
@@ -121,5 +125,38 @@ void showCalendar_day(int year, int month, int data)
 	vTaskDelay(5);
 	LCD_DATA(table[data%10]);
 	vTaskDelay(5);
+	
+	char i;
+        for(i=0;i<8;i++)		//make 'year' chinese word
+	{
+		LCD_CMD(0x40+i);	
+		vTaskDelay(5);
+		LCD_DATA(wrdyear[i]);
+		vTaskDelay(5);
+	}
+	for(i=0;i<8;i++)		//make 'month' chinese word
+	{
+		LCD_CMD(0x48+i);	
+		vTaskDelay(5);
+		LCD_DATA(wrdmonth[i]);
+		vTaskDelay(5);
+	}
+	for(i=0;i<8;i++)		//make 'data' chinese word
+	{
+		LCD_CMD(0x50+i);
+		vTaskDelay(5);
+		LCD_DATA(wrddata[i]);  
+		vTaskDelay(5);
+	}	
+	for(i=0;i<3;i++)		//display all chinese word
+	{
+		LCD_CMD(0x84+i*3);
+		vTaskDelay(5);	
+		LCD_DATA(0x00+i);
+		vTaskDelay(5);
+	} 
+
 
 }
+
+
