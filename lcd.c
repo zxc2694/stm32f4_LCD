@@ -4,6 +4,7 @@
 #include "task.h"
 #include "stm32f4xx_conf.h"
 
+unsigned char table[10] = "0123456789"; 	
 
 void LCD_CMD(uint16_t cmd)		
 {
@@ -50,7 +51,43 @@ void LCD_display(char row,char column, char display[])
 	vTaskDelay(10);		//delay 10m sec
 	while(*str!=0){
 	LCD_DATA(*str++);
-	vTaskDelay(1);		//delay 1m sec  
+	vTaskDelay(5);		//delay 5m sec  
 	}     			
 	str=display;
+}
+
+
+void showCalendar(int hour, int min, int sec)
+{
+	vTaskDelay(5);
+	LCD_CMD(0xC1);			//(row,column)=(2,2)
+	vTaskDelay(5);
+	LCD_DATA(table[hour/10]);	
+	vTaskDelay(5);
+	LCD_DATA(table[hour%10]);
+	vTaskDelay(5);
+
+	LCD_CMD(0xC6);			//(row,column)=(2,7)
+	vTaskDelay(5);
+	LCD_DATA(table[min/10]);	
+	vTaskDelay(5);
+	LCD_DATA(table[min%10]);
+	vTaskDelay(5);
+
+	LCD_CMD(0xCB);			//(row,column)=(2,12)
+	vTaskDelay(5);		 
+	LCD_DATA(table[sec/10]);	
+	vTaskDelay(5);
+	LCD_DATA(table[sec%10]);
+	vTaskDelay(5);
+
+	LCD_CMD(0xC4);			//(row,column)=(2,5)
+	vTaskDelay(1);
+	LCD_DATA(0x3A); 		//':'	
+	vTaskDelay(1);
+	LCD_CMD(0xC9);			//(row,column)=(2,8)	
+	vTaskDelay(1);	
+	LCD_DATA(0x3A);			//':'
+	vTaskDelay(1);
+
 }
