@@ -12,11 +12,11 @@ It has **13 pin** to be used.
 
 - LCD pin 2 = v+
 
-- LCD pin 3 = v+ (or use variable resistor)
+- LCD pin 3 = ground (or use variable resistor)
 
 - LCD pin 4 ~ 13 connection ：
 
-  - RS  = PD.08 (PIN 8 GPIOD)
+  - RS  = PD.08 (PIN 8 of GPIOD)
 
   - R/W = PD.09
 
