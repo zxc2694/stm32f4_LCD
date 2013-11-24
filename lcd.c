@@ -71,25 +71,25 @@ void showCalendar_time(int hour, int min, int sec)
 	LCD_DATA(table[hour%10]);
 	vTaskDelay(5);
 
-	LCD_CMD(0xC6);			//(row,column)=(2,7)
+	LCD_CMD(0xC5);			//(row,column)=(2,6)
 	vTaskDelay(5);
 	LCD_DATA(table[min/10]);	
 	vTaskDelay(5);
 	LCD_DATA(table[min%10]);
 	vTaskDelay(5);
 
-	LCD_CMD(0xCB);			//(row,column)=(2,12)
+	LCD_CMD(0xC9);			//(row,column)=(2,10)
 	vTaskDelay(5);		 
 	LCD_DATA(table[sec/10]);	
 	vTaskDelay(5);
 	LCD_DATA(table[sec%10]);
 	vTaskDelay(5);
 
-	LCD_CMD(0xC4);			//(row,column)=(2,5)
+	LCD_CMD(0xC3);			//(row,column)=(2,4)
 	vTaskDelay(5);
 	LCD_DATA(0x3A); 		//':'	
 	vTaskDelay(5);
-	LCD_CMD(0xC9);			//(row,column)=(2,8)	
+	LCD_CMD(0xC7);			//(row,column)=(2,8)	
 	vTaskDelay(5);	
 	LCD_DATA(0x3A);			//':'
 	vTaskDelay(5);
