@@ -39,7 +39,7 @@ void Init_LCD()
 	vTaskDelay(100);	         
 	LCD_CMD(0x003f);       
 	vTaskDelay(10);
-	LCD_CMD(0x000e); 
+	LCD_CMD(0x000c); 
 	vTaskDelay(10);         
 	LCD_CMD(0x0001);          
 	vTaskDelay(10);
