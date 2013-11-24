@@ -14,7 +14,7 @@ static int data=24;
 static void LCD_display_task(void *pvParameters);
 static void LED_task(void *pvParameters);
 xTaskHandle *pvLEDTask;
-
+extern void setting_time(void);
 
 int main(void)
 {
@@ -43,7 +43,7 @@ static void LCD_display_task(void *pvParameters)
 	//LCD_display(1,1,"0123456789");	//(row,column,value)--> display form (1,1) to (1,10)
 	
 	showCalendar_day(year,month,data);
-	showCalendar_time(hour,min,sec);		
+	showCalendar_time(RTC_TimeStruct.RTC_Hours,min,sec);		
 	while(1);
 }
 
