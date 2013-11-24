@@ -12,6 +12,9 @@ static int month=11;
 static int data=24;
 
 static void LCD_display_task(void *pvParameters);
+static void LED_task(void *pvParameters);
+xTaskHandle *pvLEDTask;
+
 
 int main(void)
 {
@@ -20,6 +23,12 @@ int main(void)
              (signed portCHAR *) "Liquid Crystal Display",
              512 /* stack size */, NULL,
              tskIDLE_PRIORITY + 5, NULL);
+
+	/* Create a task to flash the LED. */
+	xTaskCreate(LED_task,
+             (signed portCHAR *) "LED Flash",
+             512 /* stack size */, NULL,
+             tskIDLE_PRIORITY + 5,  pvLEDTask );
 
  	/* Start running the tasks. */
  	 vTaskStartScheduler();
@@ -38,7 +47,25 @@ static void LCD_display_task(void *pvParameters)
 	while(1);
 }
 
+static void LED_task(void *pvParameters)
+{
+  RCC_ClocksTypeDef RCC_Clocks;
+  uint8_t togglecounter = 0x00;
 
+  while(1)
+  {    
+      /* Toggle LED3 */
+      STM_EVAL_LEDToggle(LED3);
+      vTaskDelay(200);
+      /* Toggle LED4 */
+      STM_EVAL_LEDToggle(LED4);
+      vTaskDelay(200);
+      /* Toggle LED5 */
+      STM_EVAL_LEDToggle(LED5);
+      vTaskDelay(200);
+      /* Toggle LED6 */
+  }
+}
 
 
 void vApplicationTickHook()
