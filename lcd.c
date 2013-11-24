@@ -57,7 +57,7 @@ void LCD_display(char row,char column, char display[])
 }
 
 
-void showCalendar(int hour, int min, int sec)
+void showCalendar_time(int hour, int min, int sec)
 {
 	vTaskDelay(5);
 	LCD_CMD(0xC1);			//(row,column)=(2,2)
@@ -89,5 +89,37 @@ void showCalendar(int hour, int min, int sec)
 	vTaskDelay(1);	
 	LCD_DATA(0x3A);			//':'
 	vTaskDelay(1);
+
+}
+void showCalendar_day(int year, int month, int data)
+{
+	vTaskDelay(5);
+        LCD_CMD(0x80);	
+	vTaskDelay(5);		
+	LCD_DATA(0x32);			//'2'		
+	vTaskDelay(5);
+	LCD_DATA(0x30);			//'0'
+	vTaskDelay(5);
+
+	LCD_CMD(0x82);			//(row,column)=(1,3)
+	vTaskDelay(5);
+	LCD_DATA(table[year/10]);	
+	vTaskDelay(5);
+	LCD_DATA(table[year%10]);
+	vTaskDelay(5);
+
+	LCD_CMD(0x85);			//(row,column)=(1,6)
+	vTaskDelay(5);
+	LCD_DATA(table[month/10]);	
+	vTaskDelay(5);
+	LCD_DATA(table[month%10]);
+	vTaskDelay(5);
+
+	LCD_CMD(0x88);			//(row,column)=(1,9)
+	vTaskDelay(5);		 
+	LCD_DATA(table[data/10]);	
+	vTaskDelay(5);
+	LCD_DATA(table[data%10]);
+	vTaskDelay(5);
 
 }
