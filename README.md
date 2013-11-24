@@ -4,7 +4,7 @@ stm32f4_GPIO
 LCD (Liquid Crystal Display)
 ------------------------------
 
-It has **13 pin** to be used.
+It has **14 pin** to be used.
 
 
 
