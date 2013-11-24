@@ -43,10 +43,10 @@ void Init_LCD()
 void LCD_display(char row,char column, char display[])
 {
 	char *str;
-	uint16_t adress;	
+	uint16_t address;	
 	str=display;
-	adress=0x0080+0x0040*(row-1)+(column-1);	
-	LCD_CMD(adress);
+	address=0x0080+0x0040*(row-1)+(column-1);	
+	LCD_CMD(address);
 	vTaskDelay(10);		//delay 10m sec
 	while(*str!=0){
 	LCD_DATA(*str++);
