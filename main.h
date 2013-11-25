@@ -27,6 +27,12 @@
 #include "stm32f4_discovery.h"
 #include <stdio.h>
 
+static int hour=23;
+static int min=45;
+static int sec=50;
+static int year=13;
+static int month=11;
+static int data=24;
 
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
