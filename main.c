@@ -23,13 +23,6 @@ int main(void)
              512 /* stack size */, NULL,
              tskIDLE_PRIORITY + 5, NULL);
 
-	/* Create a task to flash the LED. */
-	xTaskCreate(LED_task,
-             (signed portCHAR *) "LED Flash",
-             512 /* stack size */, NULL,
-             tskIDLE_PRIORITY + 5,  pvLEDTask );
-
- 	/* Start running the tasks. */
  	 vTaskStartScheduler();
   	return 0;
 }
@@ -40,30 +33,10 @@ static void LCD_display_task(void *pvParameters)
 	Init_LCD();			//LCD  initialization    		
 
 	//LCD_display(1,1,"0123456789");	//(row,column,value)--> display form (1,1) to (1,10)
-	
+	RTC_setting();	
 	showCalendar_day(year,month,data);
-	showCalendar_time(hour,min,sec);		
+	showCalendar_time(RTC_TimeStruct.RTC_Hours,min,sec);		
 	while(1);
-}
-
-static void LED_task(void *pvParameters)
-{
-  RCC_ClocksTypeDef RCC_Clocks;
-  uint8_t togglecounter = 0x00;
-
-  while(1)
-  {    
-      /* Toggle LED3 */
-      STM_EVAL_LEDToggle(LED3);
-      vTaskDelay(200);
-      /* Toggle LED4 */
-      STM_EVAL_LEDToggle(LED4);
-      vTaskDelay(200);
-      /* Toggle LED5 */
-      STM_EVAL_LEDToggle(LED5);
-      vTaskDelay(200);
-      /* Toggle LED6 */
-  }
 }
 
 
