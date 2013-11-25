@@ -12,7 +12,6 @@ static int month=11;
 static int data=24;
 
 static void LCD_display_task(void *pvParameters);
-static void LED_task(void *pvParameters);
 xTaskHandle *pvLEDTask;
 
 int main(void)
