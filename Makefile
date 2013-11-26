@@ -41,7 +41,7 @@ CFLAGS+=-I$(FREERTOS_INC)
 CFLAGS+=-I$(FREERTOS_PORT_INC)
 
 #Source Files
-SRC += system_stm32f4xx.c startup_stm32f4xx.s string.c lcd.c lib.c RTC.c $(LIB_STM)/Utilities/STM32F4-Discovery/stm32f4_discovery.c \
+SRC += system_stm32f4xx.c startup_stm32f4xx.s string.c lcd.c lib.c $(LIB_STM)/Utilities/STM32F4-Discovery/stm32f4_discovery.c \
 		$(FREERTOS_SRC)/tasks.c $(FREERTOS_SRC)/list.c $(FREERTOS_SRC)/portable/MemMang/heap_1.c \
 		$(FREERTOS_SRC)/portable/GCC/ARM_$(ARCH)/port.c 
 
