@@ -25,9 +25,10 @@ static void LCD_display_task(void *pvParameters)
 	GPIO_Configuration();		//GPIO initialization
 	Init_LCD();			//LCD  initialization    		
 
-	//LCD_display(1,1,"0123456789");	//(row,column,value)--> display form (1,1) to (1,10)
-	showCalendar_day(year,month,data);
-	showCalendar_time(hour,min,sec);		
+
+//	LCD_display(1,1,"0123456789");          //Testing LCD can display 0~9.
+	showCalendar_day(year,month,data);      //It is just display string on the LCD first line.
+	showCalendar_time(hour,min,sec);        //It is just display string on the LCD second line.		
 	while(1);
 }
 

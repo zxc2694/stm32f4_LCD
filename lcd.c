@@ -4,12 +4,13 @@
 #include "task.h"
 #include "stm32f4xx_conf.h"
 
-unsigned char table[10] = "0123456789";
+unsigned char table[10] = "0123456789"; 				//Change 'int' to 'char'
 
 unsigned char wrdyear[]={0x04,0x0F,0x12,0x0F,0x0A,0x1F,0x02,0x02};	//display 'year' chinese word	
 unsigned char wrdmonth[]={0x1F,0x11,0x1F,0x11,0x1F,0x11,0x11,0x13};	//display 'month'chinese word
 unsigned char wrddata[]={0x1F,0x11,0x11,0x1F,0x11,0x11,0x11,0x1F};	//display 'day'  chinese word		
 
+/* Write command register function */
 void LCD_CMD(uint16_t cmd)		
 {
 	int i;
@@ -22,6 +23,7 @@ void LCD_CMD(uint16_t cmd)
 	GPIO_ResetBits(LCD_DBPORT, cmd);          
 }
 
+/* Write data register function */
 void LCD_DATA(uint16_t data1)	
 {
 	int i;
@@ -34,6 +36,7 @@ void LCD_DATA(uint16_t data1)
 	GPIO_ResetBits(LCD_DBPORT, data1);    
 }
 
+/* Initialization can decide whether to open a cursor, blink and display or not. */
 void Init_LCD()		       
 {
 	vTaskDelay(100);	         
@@ -45,6 +48,7 @@ void Init_LCD()
 	vTaskDelay(10);
 }
 
+/* Testing LCD can display 0~9 */
 void LCD_display(char row,char column, char display[])
 {
 	char *str;
@@ -60,7 +64,7 @@ void LCD_display(char row,char column, char display[])
 	str=display;
 }
 
-
+/* In order to show time of RTC in the future. */
 void showCalendar_time(int hour, int min, int sec)
 {
 	vTaskDelay(5);
@@ -95,6 +99,8 @@ void showCalendar_time(int hour, int min, int sec)
 	vTaskDelay(5);
 
 }
+
+/* In order to show day of RTC in the future. */
 void showCalendar_day(int year, int month, int data)
 {
 	vTaskDelay(5);
