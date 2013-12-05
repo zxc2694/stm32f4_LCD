@@ -6,6 +6,7 @@ OBJCOPY=arm-none-eabi-objcopy
 ARCH=CM4F
 
 LIB_STM = ./libstm
+LCDfile = $(LIB_STM)/lcdfile
 FREERTOS_SRC = $(LIB_STM)/FreeRTOS
 FREERTOS_INC = $(FREERTOS_SRC)/include/  
 FREERTOS_PORT_INC = $(FREERTOS_SRC)/portable/GCC/ARM_$(ARCH)/
@@ -41,9 +42,10 @@ CFLAGS+=-I$(FREERTOS_INC)
 CFLAGS+=-I$(FREERTOS_PORT_INC)
 
 #Source Files
-SRC += system_stm32f4xx.c startup_stm32f4xx.s string.c lcd.c lib.c $(LIB_STM)/Utilities/STM32F4-Discovery/stm32f4_discovery.c \
+SRC += system_stm32f4xx.c startup_stm32f4xx.s string.c $(LIB_STM)/Utilities/STM32F4-Discovery/stm32f4_discovery.c \
 		$(FREERTOS_SRC)/tasks.c $(FREERTOS_SRC)/list.c $(FREERTOS_SRC)/portable/MemMang/heap_1.c \
-		$(FREERTOS_SRC)/portable/GCC/ARM_$(ARCH)/port.c 
+		$(FREERTOS_SRC)/portable/GCC/ARM_$(ARCH)/port.c \
+		$(LCDfile)/lib.c $(LCDfile)/lcd.c
 
 all: $(BIN_IMAGE)
 
